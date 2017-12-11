@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CoffeeIoT</title>
+	<script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous"></script>
+	<script>
+		jQuery(function($){
+			var url = 'https://us.wio.seeed.io/v1/node/GrovePIRMotionD0/approach?access_token=67060752b4507ecc0d0851ad857bfd79';
+
+		var ok = function (response) {
+    		return response.json();
+		}
+
+    		var $div = $('#key_status');
+
+    		var text_on = '今ならコーヒー飲めるよ';
+    		var text_off = '今、だめ♡';
+
+		var change = function (json) {
+    		// jsonのhogeデータをとる
+
+    		var status = json.approach;
+    		console.log(json);
+
+    		if(status ==0) {
+    			$div.text(text_off);
+    		} else {
+    			$div.text(text_on);
+    		}
+		}
+
+		fetch(url)
+    		.then(ok)
+    		.then(change);
+		} ); 
+
+
+		// var url = 'https://us.wio.seeed.io/v1/node/GrovePIRMotionD0/approach?access_token=67060752b4507ecc0d0851ad857bfd79';
+
+		// var ok = function (response) {
+  //   		return response.json();
+		// }
+
+  //   		var $div = $('#key_status');
+
+  //   		var text_on = '何か置いてあるよ';
+  //   		var text_off = '持って行かれたよ';
+
+		// var change = function (json) {
+  //   		// jsonのhogeデータをとる
+
+  //   		var status = json.approach;
+  //   		alert(status);
+
+  //   		if(status ==0) {
+  //   			$div.text(text_off);
+  //   		} else {
+  //   			$div.text(text_on);
+  //   		}
+		// }
+
+		// fetch(url)
+  //   		.then(ok)
+  //   		.then(change);
+
+		// var ws = new WebSocket('wss://us.wio.seeed.io/v1/node/event');
+		// ws.onopen = function() {
+  //   		ws.send("67060752b4507ecc0d0851ad857bfd79");
+		// };
+
+		// var status = 0;
+
+		// ws.onmessage = function (evt) {
+  //   		console.log(evt.data);
+
+  //   		var $div = $('#key_status');
+
+  //   		var text_on = '何か置いてあるよ';
+  //   		var text_off = '持って行かれたよ';
+
+  //   		if(status == 0) {
+  //   			status = 1
+  //   		} else {
+  //   			status = 0
+  //   		}
+
+  //   		if(status ==0) {
+  //   			$div.text(text_off);
+  //   		} else {
+  //   			$div.text(text_on);
+  //   		}
+		// };
+	</script>
+</head>
+<body>
+	<div id="key_status">
+	</div>
+</body>
+</html>
